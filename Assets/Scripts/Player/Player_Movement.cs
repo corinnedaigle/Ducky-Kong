@@ -15,6 +15,10 @@ public class Player_Movement : MonoBehaviour
     // Booleans to check the player's state
     private bool isGrounded;
     private bool isClimbing;
+    private bool hasWeapon;
+
+    // public float attackDuration = 5f;
+    // public LayerMask attackableLayers;
 
     private void Awake()
     {
@@ -29,6 +33,7 @@ public class Player_Movement : MonoBehaviour
     {
         isGrounded = false;
         isClimbing = false;
+        hasWeapon = false;
 
         // Adjust the size of the collision box slightly
         Vector2 size = collider.bounds.size;
@@ -57,6 +62,11 @@ public class Player_Movement : MonoBehaviour
                 isClimbing = true;
                 // Debug.Log(isClimbing);
             }
+            else if (hit.layer == LayerMask.NameToLayer("Weapon"))
+            {
+                hasWeapon = true;
+                // Debug.Log(hasWeapon);
+            }
 
         }
     }
@@ -77,6 +87,13 @@ public class Player_Movement : MonoBehaviour
         {
             direction = Vector2.up * jumpStrengh;
         }
+
+        //Allow attack only when has weapon
+        /*else if (hasWeapon)
+        {
+
+        }*/
+
         // Apply gravity when not climbing or jumping
         else
         {
@@ -105,4 +122,32 @@ public class Player_Movement : MonoBehaviour
     {
         rb.velocity = direction;
     }
+
+
+
+    //attack logic?????
+
+    /*    IEnumerator Attack()
+        {
+            float timer = 0f;
+
+            while (timer < attackDuration)
+            {
+                // Check for attackable objects within range
+                Collider2D[] attackHits = Physics2D.OverlapCircleAll(transform.position, 1f, attackableLayers);
+
+                foreach (Collider2D hit in attackHits)
+                {
+                    // Debug.Log("Attacked: " + hit.name);
+                }
+
+                timer += 0.5f; // Attack every 0.5 seconds
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            hasWeapon = false; // Reset weapon state after the attack duration
+            Debug.Log("Attack duration ended.");
+        }
+
+    */
 }
