@@ -56,7 +56,7 @@ public class Player_Movement : MonoBehaviour
             if (hit.CompareTag("Ground"))
             {
                 // Only set as grounded if the platform is below the player
-                isGrounded = results[i].bounds.center.y < (transform.position.y);
+                isGrounded = results[i].bounds.center.y < (transform.position.y - 0.5f);
 
                 // Ignore collisions with platforms not below the player
                 Physics2D.IgnoreCollision(collider, results[i], !isGrounded);
