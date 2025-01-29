@@ -7,6 +7,7 @@ public class Player_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private new Collider2D collider;
 
+
     // Array to store results of collision checks
     private Collider2D[] results;
     private Vector2 direction;
@@ -22,6 +23,7 @@ public class Player_Movement : MonoBehaviour
     public float attackDuration = 8f;
     public LayerMask attackableLayers;
 
+
     private bool isAttacking; // Prevent multiple attacks
 
     private void Awake()
@@ -32,7 +34,6 @@ public class Player_Movement : MonoBehaviour
         results = new Collider2D[4];
     }
 
-    // Check for collisions with the ground or ladder
     private void CheckCollision()
     {
         isGrounded = false;
@@ -44,8 +45,8 @@ public class Player_Movement : MonoBehaviour
         size.y += 0.1f; // Small increase to detect grounded state
         size.x /= 2f;   // Small decrease to narrow the box
 
-        // Check for overlaps with objects in the specified area
-        int amount = Physics2D.OverlapBoxNonAlloc(transform.position, size, 0f, results);
+        Vector2 colliderPosition = (Vector2)transform.position + collider.offset;
+        int amount = Physics2D.OverlapBoxNonAlloc(colliderPosition, size, 0f, results);
 
         for (int i = 0; i < amount; i++)
         {
@@ -55,10 +56,10 @@ public class Player_Movement : MonoBehaviour
             if (hit.CompareTag("Ground"))
             {
                 // Only set as grounded if the platform is below the player
-                isGrounded = true;
-                // isGrounded = hit.transform.position.y < (transform.position.y - 0.5f);
+                isGrounded = results[i].bounds.center.y < (transform.position.y);
+
                 // Ignore collisions with platforms not below the player
-                // Physics2D.IgnoreCollision(collider, results[i], !isGrounded);
+                Physics2D.IgnoreCollision(collider, results[i], !isGrounded);
             }
             // Check if it's a ladder
             else if (hit.CompareTag("Ladder"))
@@ -79,7 +80,7 @@ public class Player_Movement : MonoBehaviour
     {
         // Check for collisions every frame
         CheckCollision();
-        Debug.Log(isGrounded);
+
         Movement();
 
         // Horizontal movement
