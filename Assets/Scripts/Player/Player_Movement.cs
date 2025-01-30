@@ -1,46 +1,57 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class Player_Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private new Collider2D collider;
-
-
-    // Array to store results of collision checks
     private Collider2D[] results;
+
+
     private Vector2 direction;
 
+    [Header("Player Settings")]
     public float moveSpeed = 1f;
     public float jumpStrength = 1f;
 
-    // Booleans to check the player's state
-    private bool isGrounded;
-    private bool isClimbing;
-    private bool hasWeapon;
-
+    [Header("Attack Settings")]
     public float attackDuration = 8f;
     public LayerMask attackableLayers;
+    public LayerMask LadderLayer;
 
-
-    private bool isAttacking; // Prevent multiple attacks
+    private int lives = 3;
+    private bool isGrounded;
+    private bool canClimb;
+    private bool isClimbing;
+    private bool hasWeapon;
+    private bool isJumping;
+    private bool isAttacking;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
-        // Set max collisions to 4
-        results = new Collider2D[4];
+        results = new Collider2D[6];
+    }
+
+    private void Update()
+    {
+        CheckCollision();
+        PlayerMovement();
+        // Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = direction;
     }
 
     private void CheckCollision()
     {
         isGrounded = false;
-        isClimbing = false;
+        canClimb = false;
         hasWeapon = false;
 
-        // Adjust the size of the collision box slightly
         Vector2 size = collider.bounds.size;
         size.y += 0.1f; // Small increase to detect grounded state
         size.x /= 2f;   // Small decrease to narrow the box
@@ -52,111 +63,129 @@ public class Player_Movement : MonoBehaviour
         {
             GameObject hit = results[i].gameObject;
 
-            // Check if it's a ground object (tiles or other platforms)
             if (hit.CompareTag("Ground"))
             {
-                // Only set as grounded if the platform is below the player
+                bool wasJumping = isJumping; // Store previous state
                 isGrounded = results[i].bounds.center.y < (transform.position.y - 0.5f);
 
-                // Ignore collisions with platforms not below the player
+                if (isGrounded && wasJumping)
+                {
+                    isJumping = false; // Reset jump when landing
+                }
+
                 Physics2D.IgnoreCollision(collider, results[i], !isGrounded);
             }
-            // Check if it's a ladder
-            else if (hit.CompareTag("Ladder"))
+            if (hit.CompareTag("Ladder") && !isJumping)
+            {
+                canClimb = true;
+            }
+            if (hit.CompareTag("Weapon"))
+            {
+                hasWeapon = true;
+                StartCoroutine(AttackTime());
+                Destroy(hit.gameObject);
+            }
+            if (hit.CompareTag("Enemy")) // Check if player collides with an enemy
+            {
+                if (!isAttacking) // Player loses life if not attacking
+                {
+                    Destroy(hit.gameObject);
+                    LoseLife();
+                }
+            }
+        }
+    }
+
+    private void PlayerMovement()
+    {
+        Jump();
+        Climb();
+        Attack();
+        Walk();
+
+        // Flip player sprite based on movement direction
+        if (direction.x != 0) transform.eulerAngles = new Vector3(0f, direction.x > 0 ? 0f : 180f, 0f);
+    }
+
+    private void Walk()
+    {
+        direction.x = Input.GetAxis("Horizontal") * moveSpeed;
+        direction.y += Physics2D.gravity.y * Time.deltaTime;
+
+        if (isGrounded) direction.y = Mathf.Max(direction.y, -1f); // Prevent excessive downward velocity
+    }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            Debug.Log("JUMP");
+            isJumping = true;
+            isGrounded = false;
+            direction.y = jumpStrength;
+        }
+    }
+
+    private void Climb()
+    {
+        if (canClimb && !isJumping)
+        {
+            if (Input.GetButtonDown("Vertical"))
             {
                 isClimbing = true;
             }
-            // Check if the player picks up a weapon
-            else if (hit.CompareTag("Weapon"))
+
+
+            if (isClimbing)
             {
-                hasWeapon = true;
-                StartCoroutine(Attack());
-                Destroy(hit.gameObject); // Pick up the weapon
+                direction.y = Input.GetAxis("Vertical") * moveSpeed;
             }
         }
     }
 
-    private void Update()
+    private void Attack()
     {
-        // Check for collisions every frame
-        CheckCollision();
-
-        Movement();
-
-        // Horizontal movement
-        direction.x = Input.GetAxis("Horizontal") * moveSpeed;
-
-        // Prevent downward movement from exceeding the threshold
-        if (isGrounded)
+        if (hasWeapon && !isAttacking)
         {
-            direction.y = Mathf.Max(direction.y, -1f);
-        }
-
-        // Flip the player sprite based on movement direction
-        if (direction.x > 0f)
-        {
-            transform.eulerAngles = Vector3.zero;
-        }
-        else if (direction.x < 0f)
-        {
-            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            Debug.Log("Weapon acquired.");
         }
     }
 
-    private void FixedUpdate()
-    {
-        rb.velocity = direction;
-    }
-
-    private void Movement()
-    {
-        // Allow vertical movement when climbing a ladder
-        if (isClimbing)
-        {
-            direction.y = Input.GetAxis("Vertical") * moveSpeed;
-        }
-        // Allow jumping only when grounded
-        else if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            direction.y = jumpStrength;
-        }
-        // Allow attack only when has weapon and not already attacking
-        else if (hasWeapon && !isAttacking)
-        {
-            Debug.Log("Weapon Status:" + hasWeapon);
-        }
-        else
-        {
-            // Apply gravity when not climbing or jumping
-            direction.y += Physics2D.gravity.y * Time.deltaTime;
-        }
-    }
-
-    IEnumerator Attack()
+    private IEnumerator AttackTime()
     {
         isAttacking = true;
         float timer = 0f;
 
         while (timer < attackDuration)
         {
-            // Check for attackable objects within range
             Collider2D[] attackHits = Physics2D.OverlapCircleAll(transform.position, 1f, attackableLayers);
-
             foreach (Collider2D hit in attackHits)
             {
-                if (hit.CompareTag("Enemy"))
-                {
-                    Debug.Log("Attacked: " + hit.name);
-                    Destroy(hit.gameObject);
-                }
+                Debug.Log("Attacked: " + hit.name);
+                Destroy(hit.gameObject);
             }
 
-            timer += 0.5f; // Attack every 0.5 seconds
-            yield return new WaitForSeconds(0.5f);
+            timer += 0.5f;
+            yield return new WaitForSecondsRealtime(0.5f);
         }
 
-        hasWeapon = false; // Reset weapon state after the attack duration
-        isAttacking = false; // End attacking state
+        hasWeapon = false;
+        isAttacking = false;
         Debug.Log("Attack duration ended.");
     }
+
+    private void LoseLife()
+    {
+        lives--;
+
+        Debug.Log("Player hit! Lives remaining: " + lives);
+
+        if (lives <= 0)
+        {
+            Debug.Log("Game Over!");
+            // Add logic for game over, such as restarting the level
+            Destroy(gameObject);
+        }
+    }
+
 }
