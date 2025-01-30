@@ -141,9 +141,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014019817, y: -0.09175086}
+  m_Offset: {x: 0.028011858, y: -0.15626544}
   serializedVersion: 2
-  m_Radius: 0.37794405
+  m_Radius: 0.31464165
 --- !u!114 &39117939106346682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +162,9 @@ MonoBehaviour:
   attackableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  LadderLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &422332159063105735
 Rigidbody2D:
   serializedVersion: 4
