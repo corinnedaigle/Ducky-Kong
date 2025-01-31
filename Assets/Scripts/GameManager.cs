@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         StartCoroutine(waitSpawner());
         score = 0;
-        lives = player.GetComponent<Player_Box>().lives;
+        lives = 3;
         scoreText.text = "Score: " + score;
         livesText.text = "Lives: " + lives;
         isPlayerAlive = true;
@@ -73,9 +73,15 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + newScore;
     }
     // Updates lives
-    public void LivesCounter(int newLife)
+    public void LoseLife(int HowMuchItLose)
     {
-        livesText.text = "Lives: " + newLife;
+        lives-= HowMuchItLose;
+        livesText.text = "Lives: " + lives;
+        if (lives <= 0)
+        {
+            GameOver();
+            Destroy(player);
+        }
     }
 
     public void GameOver()

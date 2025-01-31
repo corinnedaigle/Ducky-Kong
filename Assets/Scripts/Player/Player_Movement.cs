@@ -6,8 +6,7 @@ public class Player_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private new Collider2D collider;
     private Collider2D[] results;
-
-
+    private Vector3 respawnPosition;
     private Vector2 direction;
 
     [Header("Player Settings")]
@@ -19,7 +18,8 @@ public class Player_Movement : MonoBehaviour
     public LayerMask attackableLayers;
     public LayerMask LadderLayer;
 
-    private int lives = 3;
+    private float horizontalScreenSize = 9.6f;
+    private float verticalScreenSize = 5f;
     private bool isGrounded;
     private bool canClimb;
     private bool isClimbing;
@@ -27,11 +27,18 @@ public class Player_Movement : MonoBehaviour
     private bool isJumping;
     private bool isAttacking;
 
+    public GameManager gameManager;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         results = new Collider2D[6];
+        respawnPosition = transform.position; // Store the initial position
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+
     }
 
     private void Update()
@@ -53,8 +60,7 @@ public class Player_Movement : MonoBehaviour
         hasWeapon = false;
 
         Vector2 size = collider.bounds.size;
-        size.y += 0.1f; // Small increase to detect grounded state
-        size.x /= 2f;   // Small decrease to narrow the box
+
 
         Vector2 colliderPosition = (Vector2)transform.position + collider.offset;
         int amount = Physics2D.OverlapBoxNonAlloc(colliderPosition, size, 0f, results);
@@ -105,6 +111,33 @@ public class Player_Movement : MonoBehaviour
 
         // Flip player sprite based on movement direction
         if (direction.x != 0) transform.eulerAngles = new Vector3(0f, direction.x > 0 ? 0f : 180f, 0f);
+
+        // Store original movement direction
+        float originalDirectionX = direction.x;
+
+        // Clamp horizontal position but allow movement back
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -horizontalScreenSize, horizontalScreenSize),
+                                         transform.position.y, // No vertical clamping
+                                         transform.position.z);
+
+        // Stop movement only if trying to move further out of bounds (horizontal only)
+        if (transform.position.x >= horizontalScreenSize && originalDirectionX > 0)
+        {
+            direction.x = 0; // Stop moving right
+        }
+        else if (transform.position.x <= -horizontalScreenSize && originalDirectionX < 0)
+        {
+            direction.x = 0; // Stop moving left
+        }
+
+        // If player falls below the screen, trigger death
+        if (transform.position.y < -verticalScreenSize)
+        {
+            Fall();
+        }
+
+        Physics2D.SyncTransforms(); // Ensure collider updates instantly
+
     }
 
     private void Walk()
@@ -112,7 +145,7 @@ public class Player_Movement : MonoBehaviour
         direction.x = Input.GetAxis("Horizontal") * moveSpeed;
         direction.y += Physics2D.gravity.y * Time.deltaTime;
 
-        if (isGrounded) direction.y = Mathf.Max(direction.y, -1f); // Prevent excessive downward velocity
+        if (isGrounded) direction.y = Mathf.Max(direction.y, -1f); 
     }
 
     private void Jump()
@@ -176,16 +209,27 @@ public class Player_Movement : MonoBehaviour
 
     private void LoseLife()
     {
-        lives--;
 
-        Debug.Log("Player hit! Lives remaining: " + lives);
+        Debug.Log("OH NO");
+        GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
+    }
 
-        if (lives <= 0)
+    private void Fall()
+    {
+        Debug.Log("Player fell off the screen. Respawning...");
+        LoseLife();
+
+        if (gameManager.isPlayerAlive)
+        {
+            transform.position = respawnPosition; // Reset position
+            rb.velocity = Vector2.zero; // Stop movement
+        }
+        else
         {
             Debug.Log("Game Over!");
-            // Add logic for game over, such as restarting the level
             Destroy(gameObject);
         }
     }
+
 
 }

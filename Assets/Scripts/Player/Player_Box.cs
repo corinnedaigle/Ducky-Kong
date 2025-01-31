@@ -35,7 +35,6 @@ public class Player_Box : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
         results = new Collider2D[6];
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -199,7 +198,5 @@ public class Player_Box : MonoBehaviour
             Destroy(gameObject);
             gameManager.GameOver();
         }
-
-        GameObject.Find("GameManager").GetComponent<GameManager>().LivesCounter(lives);
     }
 }

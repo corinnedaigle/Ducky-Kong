@@ -13,13 +13,4 @@ public class Bubbles : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D whatIHit)
-    {
-        if (whatIHit.tag == "Player")
-        {
-            //I hit the Player!
-            whatIHit.GetComponent<Player_Box>().LoseLife();
-            Destroy(this.gameObject);
-        }
-    }
 }
