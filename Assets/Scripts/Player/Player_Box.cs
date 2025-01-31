@@ -20,7 +20,7 @@ public class Player_Box : MonoBehaviour
     public LayerMask attackableLayers;
     public LayerMask LadderLayer;
 
-    private int lives = 3;
+    public int lives = 3;
     private bool isGrounded;
     private bool canClimb;
     private bool isClimbing;
@@ -28,11 +28,14 @@ public class Player_Box : MonoBehaviour
     private bool isJumping;
     private bool isAttacking;
 
+    public GameManager gameManager;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
         results = new Collider2D[6];
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -185,15 +188,18 @@ public class Player_Box : MonoBehaviour
         Debug.Log("Attack duration ended.");
     }
 
-    private void LoseLife()
+    public void LoseLife()
     {
         lives--;
-        Debug.Log("Player hit! Lives remaining: " + lives);
+        transform.position = new Vector3(-8, -3, 0);
 
-        if (lives <= 0)
+        if (lives == 0)
         {
             Debug.Log("Game Over!");
             Destroy(gameObject);
+            gameManager.GameOver();
         }
+
+        GameObject.Find("GameManager").GetComponent<GameManager>().LivesCounter(lives);
     }
 }
