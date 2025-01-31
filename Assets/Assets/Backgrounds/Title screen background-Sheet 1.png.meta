@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69176c78e53be034497ffb9bb2f2369c
+guid: 034e222c27de1694190378e337683857
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Title screen background-Sheet_0
+      name: Title screen background-Sheet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03d7332925ddd8144b30e554e8f8cae9
-      internalID: 1004164408
+      spriteID: 7d10f759f84237f4d9ec4e4034bdce70
+      internalID: 654399926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Title screen background-Sheet_1
+      name: Title screen background-Sheet 1_1
       rect:
         serializedVersion: 2
         x: 320
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d483caa87412944681a2974e939df1d
-      internalID: 1478749517
+      spriteID: 613e906d8163b684e97c92fa53e2513e
+      internalID: 1062391717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Title screen background-Sheet_2
+      name: Title screen background-Sheet 1_2
       rect:
         serializedVersion: 2
         x: 640
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7bf726958a6edf42998c8e716f96b42
-      internalID: 1280154183
+      spriteID: fe55c6db183018c48b94c11a643e30e1
+      internalID: 533888860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Title screen background-Sheet_3
+      name: Title screen background-Sheet 1_3
       rect:
         serializedVersion: 2
         x: 960
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e0fd0ec324e57b44b2877f46f1ab6c2
-      internalID: -1214626838
+      spriteID: 23538cfe12dd76a4f9c201ba540d315a
+      internalID: -1943663435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Title screen background-Sheet_4
+      name: Title screen background-Sheet 1_4
       rect:
         serializedVersion: 2
         x: 1280
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dae8d4b08516a36449395f08145b4bbc
-      internalID: -1464388364
+      spriteID: 1ba77f03dd5165e469cb49c9795f8c86
+      internalID: -834053463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Title screen background-Sheet_5
+      name: Title screen background-Sheet 1_5
       rect:
         serializedVersion: 2
         x: 1600
@@ -229,8 +229,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83548c6b3d257124bb276e4d397d46bb
-      internalID: -329850697
+      spriteID: 3ca43812d5a3ffc4684ea37a7727025e
+      internalID: 1862653075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title screen background-Sheet 1_6
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 320
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 925a9ced3eb445248b6cc895d74e3058
+      internalID: 632231923
       vertices: []
       indices: 
       edges: []
@@ -246,12 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Title screen background-Sheet_0: 1004164408
-      Title screen background-Sheet_1: 1478749517
-      Title screen background-Sheet_2: 1280154183
-      Title screen background-Sheet_3: -1214626838
-      Title screen background-Sheet_4: -1464388364
-      Title screen background-Sheet_5: -329850697
+      Title screen background-Sheet 1_0: 654399926
+      Title screen background-Sheet 1_1: 1062391717
+      Title screen background-Sheet 1_2: 533888860
+      Title screen background-Sheet 1_3: -1943663435
+      Title screen background-Sheet 1_4: -834053463
+      Title screen background-Sheet 1_5: 1862653075
+      Title screen background-Sheet 1_6: 632231923
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
