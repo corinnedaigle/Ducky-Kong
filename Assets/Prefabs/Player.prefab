@@ -164,7 +164,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   LadderLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!50 &422332159063105735
 Rigidbody2D:
   serializedVersion: 4
