@@ -5,18 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
- 
+
     public bool level2;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && level2 != true)
+        Debug.Log("Trigger detected with: " + collision.gameObject.name);
+
+        if (collision.gameObject.layer == 9)
         {
-            SceneManager.LoadScene("level2");
-        }
-        else 
-        {
-            SceneManager.LoadScene("win");
+            if (level2 == false)
+            {
+                SceneManager.LoadScene("Level 2");
+            }
+            else
+            {
+                SceneManager.LoadScene("Win");
+            }
+            
         }
     }
+
+
 }
