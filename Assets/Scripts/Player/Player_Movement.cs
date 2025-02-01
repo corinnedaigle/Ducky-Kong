@@ -8,6 +8,8 @@ public class Player_Movement : MonoBehaviour
     private Collider2D[] results;
     private Vector3 respawnPosition;
     private Vector2 direction;
+    private BoxCollider2D boxCollider;
+
 
     [Header("Player Settings")]
     public float moveSpeed = 1f;
@@ -37,6 +39,7 @@ public class Player_Movement : MonoBehaviour
         results = new Collider2D[6];
         respawnPosition = transform.position; // Store the initial position
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
 
 
     }
@@ -58,6 +61,7 @@ public class Player_Movement : MonoBehaviour
         isGrounded = false;
         canClimb = false;
         hasWeapon = false;
+        isClimbing = false;
 
         Vector2 size = collider.bounds.size;
 
@@ -71,17 +75,12 @@ public class Player_Movement : MonoBehaviour
 
             if (hit.CompareTag("Ground"))
             {
-                bool wasJumping = isJumping; // Store previous state
                 isGrounded = results[i].bounds.center.y < (transform.position.y - 0.5f);
-
-                if (isGrounded && wasJumping)
-                {
-                    isJumping = false; // Reset jump when landing
-                }
-
                 Physics2D.IgnoreCollision(collider, results[i], !isGrounded);
+                isJumping = false;
+
             }
-            if (hit.CompareTag("Ladder") && !isJumping)
+            if (hit.CompareTag("Ladder"))
             {
                 canClimb = true;
             }
@@ -104,13 +103,72 @@ public class Player_Movement : MonoBehaviour
 
     private void PlayerMovement()
     {
-        Jump();
-        Climb();
-        Attack();
-        Walk();
+        // Jumping
+        if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
+        {
+            isJumping = true;
+            isGrounded = false;
+            direction = Vector2.up * jumpStrength;
+            Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
+            Physics2D.IgnoreLayerCollision(9, 7, true); // Ignore ladder while jumping
+
+        }
+
+
+
+        // Climbing
+        if (canClimb && !isJumping)
+        {
+            //If pressing up / down
+            if (Input.GetButton("Vertical"))
+            {
+                isClimbing = true;
+
+            }
+            else
+            {
+                Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
+            }
+
+
+            if (isClimbing)
+            {
+                direction.y = Input.GetAxis("Vertical") * moveSpeed;
+                Physics2D.IgnoreLayerCollision(9, 7, false); // Allow player to interact with ladder again
+
+            }
+        }
+
+        // Walking (Horizontal movement)
+        direction.x = Input.GetAxis("Horizontal") * moveSpeed;
+
+
+        if (isJumping)
+        {
+            Physics2D.IgnoreLayerCollision(9, 7, true);
+            Debug.Log("WHY DIDNT It ignore it");
+        }
+
+
+        // If the player is on the ground, limit downward velocity
+        if (isGrounded)
+        {
+            isJumping = false;
+            direction.y = Mathf.Max(direction.y, -1f);
+            Physics2D.IgnoreLayerCollision(9, 7, false); // Re-enable ladder collision after landing
+        }
+
+        // Apply gravity when jump execpt while climbing
+        if (!isClimbing)
+        {
+            direction += Physics2D.gravity * Time.deltaTime;
+        }
 
         // Flip player sprite based on movement direction
-        if (direction.x != 0) transform.eulerAngles = new Vector3(0f, direction.x > 0 ? 0f : 180f, 0f);
+        if (direction.x != 0)
+        {
+            transform.eulerAngles = new Vector3(0f, direction.x > 0 ? 0f : 180f, 0f);
+        }
 
         // Store original movement direction
         float originalDirectionX = direction.x;
@@ -136,45 +194,30 @@ public class Player_Movement : MonoBehaviour
             Fall();
         }
 
+        // Apply the final calculated velocity
+        rb.velocity = direction;
+
         Physics2D.SyncTransforms(); // Ensure collider updates instantly
-
     }
 
-    private void Walk()
-    {
-        direction.x = Input.GetAxis("Horizontal") * moveSpeed;
-        direction.y += Physics2D.gravity.y * Time.deltaTime;
-
-        if (isGrounded) direction.y = Mathf.Max(direction.y, -1f); 
-    }
-
-    private void Jump()
-    {
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            Debug.Log("JUMP");
-            isJumping = true;
-            isGrounded = false;
-            direction.y = jumpStrength;
-        }
-    }
-
-    private void Climb()
-    {
-        if (canClimb && !isJumping)
-        {
-            if (Input.GetButtonDown("Vertical"))
-            {
-                isClimbing = true;
-            }
 
 
-            if (isClimbing)
-            {
-                direction.y = Input.GetAxis("Vertical") * moveSpeed;
-            }
-        }
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void Attack()
     {
@@ -207,12 +250,16 @@ public class Player_Movement : MonoBehaviour
         Debug.Log("Attack duration ended.");
     }
 
+
+
     private void LoseLife()
     {
 
         Debug.Log("OH NO");
         GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
     }
+
+
 
     private void Fall()
     {
