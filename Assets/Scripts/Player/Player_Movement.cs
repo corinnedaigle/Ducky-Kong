@@ -56,7 +56,7 @@ public class Player_Movement : MonoBehaviour
         PlayerMovement();
         // Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
         checkMovment(); // check movment to update bool every time it is moving
-        p_animator.SetBool("isRunning", isMoving);
+        
     }
 
     private void FixedUpdate()
@@ -66,13 +66,13 @@ public class Player_Movement : MonoBehaviour
 
     private void checkMovment()
     {
-        if (!isGrounded && rb.velocity.magnitude > treshHold)
-        {
-            isMoving = true;
-        } else
-        {
-            isMoving = false;
-        }
+        if (Mathf.Abs(rb.velocity.x) != 0)
+            p_animator.SetBool("isRunning", true);
+        else
+            p_animator.SetBool("isRunning", false);
+
+
+        Debug.Log($"Velocity X: {rb.velocity.x}, isMoving: {isMoving}");
     }
 
     private void CheckCollision()
