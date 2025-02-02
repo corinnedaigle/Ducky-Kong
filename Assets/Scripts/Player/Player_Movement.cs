@@ -262,7 +262,7 @@ public class Player_Movement : MonoBehaviour
 
     private void LoseLife()
     {
-
+        transform.position = new Vector3(-7, -4, 0);
         Debug.Log("OH NO");
         audioManager.PlaySFX(audioManager.death);
         GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
