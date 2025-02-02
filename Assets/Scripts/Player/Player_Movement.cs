@@ -166,13 +166,13 @@ public class Player_Movement : MonoBehaviour
         direction.x = Input.GetAxis("Horizontal") * moveSpeed;
 
         p_animator.SetBool("theClimb", isClimbing);
+        p_animator.SetBool("Attk", isAttacking);
 
         if (isJumping)
         {
             Physics2D.IgnoreLayerCollision(9, 7, true);
             //Debug.Log("WHY DIDNT It ignore it");
         }
-
 
         // If the player is on the ground, limit downward velocity
         if (isGrounded)
@@ -225,7 +225,7 @@ public class Player_Movement : MonoBehaviour
     }
 
 
-
+    
 
     private void Attack()
     {
@@ -265,10 +265,11 @@ public class Player_Movement : MonoBehaviour
     {
 
         Debug.Log("OH NO");
-       // transform.position = respawnPosition;
         audioManager.PlaySFX(audioManager.death);
-
         GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
+        p_animator.SetBool("nowDead", true);
+        StartCoroutine(RespawnAfterDeath());
+
     }
 
 
@@ -290,4 +291,11 @@ public class Player_Movement : MonoBehaviour
     }
 
 
+    private IEnumerator RespawnAfterDeath()
+    {
+        yield return new WaitForSeconds(2.5f);
+        transform.position = respawnPosition;
+
+        Debug.Log("Player Respawned.");
+    }
 }
