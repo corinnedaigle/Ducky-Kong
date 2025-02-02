@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     private GameObject toothpaste;
     private GameObject blowdry;
 
+    // place heart object in here
+    public GameObject live1;
+    public GameObject live2;
+    public GameObject live3;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
@@ -76,12 +81,31 @@ public class GameManager : MonoBehaviour
     public void LoseLife(int HowMuchItLose)
     {
         lives-= HowMuchItLose;
-        livesText.text = "Lives: " + lives;
+
+        switch (lives)
+        {
+            // each one of this distroy a heart icon from the player UI 
+            case 2:
+                    Destroy(live1);
+                    break;
+            case 1: 
+                Destroy(live2);
+                break;
+            case 0:
+                Destroy(live3);
+                GameOver();
+                Destroy(player);
+                break;
+
+        }
+   // Your previous code in case i brake something by accident
+
+        /*livesText.text = "Lives: " + lives;
         if (lives <= 0)
         {
             GameOver();
             Destroy(player);
-        }
+        }*/
     }
 
     public void GameOver()
@@ -91,6 +115,9 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
         livesText.gameObject.SetActive(false);
+
+        // I added this so it sends you to the game over screen instead 
+        SceneManager.LoadScene("Game Over");
 
     }
 
