@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 
 
@@ -11,9 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject bubbles;
     public GameObject soap;
-    public GameObject jumpScore;
-    private GameObject toothpaste;
-    private GameObject blowdry;
 
     // place heart object in here
     public GameObject live1;
@@ -21,8 +16,6 @@ public class GameManager : MonoBehaviour
     public GameObject live3;
 
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI livesText;
-    public TextMeshProUGUI gameOverText;
 
     public bool isPlayerAlive;
 
@@ -43,12 +36,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
+        
         StartCoroutine(waitSpawner());
         score = 0;
         lives = 3;
         scoreText.text = "Score: " + score;
-        livesText.text = "Lives: " + lives;
         isPlayerAlive = true;
         stop = false;
     }
@@ -65,7 +57,7 @@ public class GameManager : MonoBehaviour
 
         while (!stop)
         {
-            randomEnemy = Random.Range(0, 2);
+            randomEnemy = Random.Range(0, 4);
             Vector3 spawnPosition = new Vector3(1, 1, 0);
             Instantiate(enemies[randomEnemy], spawnPosition + transform.TransformPoint(0, 0, 0), gameObject.transform.rotation);
             yield return new WaitForSeconds(spawnWait);
@@ -113,9 +105,8 @@ public class GameManager : MonoBehaviour
     {
         isPlayerAlive = false;
         stop = true;
-        gameOverText.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
-        livesText.gameObject.SetActive(false);
+       
 
         // I added this so it sends you to the game over screen instead 
         SceneManager.LoadScene("Game Over");

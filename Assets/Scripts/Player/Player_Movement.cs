@@ -14,7 +14,6 @@ public class Player_Movement : MonoBehaviour
     [Header("Player Settings")]
     public float moveSpeed = 1f;
     public float jumpStrength = 1f;
-    private float treshHold = 0.1f;
 
     [Header("Attack Settings")]
     public float attackDuration = 8f;
