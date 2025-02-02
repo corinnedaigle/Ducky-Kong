@@ -4,7 +4,7 @@ using System.Collections;
 public class Player_Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private new Collider2D collider;
+    private new Collider2D collider;  //this is giving a warning idk why 
     private Collider2D[] results;
     private Vector3 respawnPosition;
     private Vector2 direction;
@@ -14,6 +14,7 @@ public class Player_Movement : MonoBehaviour
     [Header("Player Settings")]
     public float moveSpeed = 1f;
     public float jumpStrength = 1f;
+    private float treshHold = 0.1f;
 
     [Header("Attack Settings")]
     public float attackDuration = 8f;
@@ -28,8 +29,12 @@ public class Player_Movement : MonoBehaviour
     private bool hasWeapon;
     private bool isJumping;
     private bool isAttacking;
+    private bool isMoving;
 
     public GameManager gameManager;
+
+    // Animator code 
+    private Animator p_animator;
 
 
     private void Awake()
@@ -41,7 +46,8 @@ public class Player_Movement : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
 
-
+        // animator
+        p_animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -49,11 +55,24 @@ public class Player_Movement : MonoBehaviour
         CheckCollision();
         PlayerMovement();
         // Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
+        checkMovment(); // check movment to update bool every time it is moving
+        p_animator.SetBool("isRunning", isMoving);
     }
 
     private void FixedUpdate()
     {
         rb.velocity = direction;
+    }
+
+    private void checkMovment()
+    {
+        if (!isGrounded && rb.velocity.magnitude > treshHold)
+        {
+            isMoving = true;
+        } else
+        {
+            isMoving = false;
+        }
     }
 
     private void CheckCollision()
@@ -142,6 +161,7 @@ public class Player_Movement : MonoBehaviour
         // Walking (Horizontal movement)
         direction.x = Input.GetAxis("Horizontal") * moveSpeed;
 
+        p_animator.SetBool("theClimb", isClimbing);
 
         if (isJumping)
         {
