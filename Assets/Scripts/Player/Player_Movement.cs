@@ -36,6 +36,7 @@ public class Player_Movement : MonoBehaviour
     // Animator code 
     private Animator p_animator;
 
+    AudioManager audioManager;
 
     private void Awake()
     {
@@ -45,6 +46,8 @@ public class Player_Movement : MonoBehaviour
         respawnPosition = transform.position; // Store the initial position
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         // animator
         p_animator = GetComponent<Animator>();
@@ -72,7 +75,7 @@ public class Player_Movement : MonoBehaviour
             p_animator.SetBool("isRunning", false);
 
 
-        Debug.Log($"Velocity X: {rb.velocity.x}, isMoving: {isMoving}");
+        //Debug.Log($"Velocity X: {rb.velocity.x}, isMoving: {isMoving}");
     }
 
     private void CheckCollision()
@@ -127,8 +130,9 @@ public class Player_Movement : MonoBehaviour
         {
             isJumping = true;
             isGrounded = false;
+            audioManager.PlaySFX(audioManager.jumping);
             direction = Vector2.up * jumpStrength;
-            Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
+            //Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
             Physics2D.IgnoreLayerCollision(9, 7, true); // Ignore ladder while jumping
 
         }
@@ -146,7 +150,7 @@ public class Player_Movement : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
+                //Debug.Log($"Climb: {canClimb} | Attack: {isAttacking} | Grounded: {isGrounded} | Jumping: {isJumping}");
             }
 
 
@@ -166,7 +170,7 @@ public class Player_Movement : MonoBehaviour
         if (isJumping)
         {
             Physics2D.IgnoreLayerCollision(9, 7, true);
-            Debug.Log("WHY DIDNT It ignore it");
+            //Debug.Log("WHY DIDNT It ignore it");
         }
 
 
@@ -223,22 +227,6 @@ public class Player_Movement : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void Attack()
     {
         if (hasWeapon && !isAttacking)
@@ -258,6 +246,7 @@ public class Player_Movement : MonoBehaviour
             foreach (Collider2D hit in attackHits)
             {
                 Debug.Log("Attacked: " + hit.name);
+                GameObject.Find("GameManager").GetComponent<GameManager>().EarnScore(5);
                 Destroy(hit.gameObject);
             }
 
@@ -276,6 +265,9 @@ public class Player_Movement : MonoBehaviour
     {
 
         Debug.Log("OH NO");
+       // transform.position = respawnPosition;
+        audioManager.PlaySFX(audioManager.death);
+
         GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
     }
 
@@ -288,7 +280,6 @@ public class Player_Movement : MonoBehaviour
 
         if (gameManager.isPlayerAlive)
         {
-            transform.position = respawnPosition; // Reset position
             rb.velocity = Vector2.zero; // Stop movement
         }
         else

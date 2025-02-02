@@ -73,9 +73,10 @@ public class GameManager : MonoBehaviour
     }
 
     // Score keeper
-    public void EarnScore(int newScore)
+    public void EarnScore(int HowMuchItEarn)
     {
-        scoreText.text = "Score: " + newScore;
+        score += HowMuchItEarn;
+        scoreText.text = "Score: " + score;
     }
     // Updates lives
     public void LoseLife(int HowMuchItLose)

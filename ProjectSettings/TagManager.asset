@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Enemy
   - Goal
+  - Audio
   layers:
   - Default
   - TransparentFX
