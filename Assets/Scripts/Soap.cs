@@ -8,7 +8,7 @@ public class Soap : MonoBehaviour
     void Start()
     {
         // timer to distroy soap after a set amount of time
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 4f);
     }
 
     private void OnTriggerEnter2D(Collider2D whatIHit)
