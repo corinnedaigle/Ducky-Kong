@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4145431048205192554}
   - component: {fileID: -2816481125046209802}
   - component: {fileID: -7867108862431133305}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Toothpaste
   m_TagString: Enemy
   m_Icon: {fileID: 0}

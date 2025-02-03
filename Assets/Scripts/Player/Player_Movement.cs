@@ -21,7 +21,7 @@ public class Player_Movement : MonoBehaviour
     public LayerMask LadderLayer;
 
     private float horizontalScreenSize = 9.6f;
-    private float verticalScreenSize = 5f;
+    private float verticalScreenSize = 6f;
     private bool isGrounded;
     private bool canClimb;
     private bool isClimbing;
@@ -262,7 +262,7 @@ public class Player_Movement : MonoBehaviour
 
     private void LoseLife()
     {
-        transform.position = new Vector3(-7, -4, 0);
+        //transform.position = new Vector3(-7, -4, 0);
         Debug.Log("OH NO");
         audioManager.PlaySFX(audioManager.death);
         GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
@@ -294,6 +294,7 @@ public class Player_Movement : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         transform.position = respawnPosition;
+        p_animator.SetBool("nowDead", false);
 
         Debug.Log("Player Respawned.");
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8689763496380996344}
   - component: {fileID: 7020397391750469633}
   - component: {fileID: 2175617841302851916}
-  - component: {fileID: 5364678167592813549}
+  - component: {fileID: 2534008959321659904}
   m_Layer: 8
   m_Name: Soap
   m_TagString: Enemy
@@ -144,8 +144,8 @@ MonoBehaviour:
   isMoving: 0
   waypointIndex: 0
   moveSpeed: 6
---- !u!58 &5364678167592813549
-CircleCollider2D:
+--- !u!70 &2534008959321659904
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -173,9 +173,9 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1.18, y: 0.64}
+  m_Direction: 1
