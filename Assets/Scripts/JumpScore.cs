@@ -6,29 +6,25 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class JumpScore : MonoBehaviour
 {
-    public Transform player;
+
     bool IsPlayerInRange;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform == player)
+        if (other.gameObject.layer == 9)
         {
+            Debug.Log("Take points");
             IsPlayerInRange = true;
+            GameObject.Find("GameManager").GetComponent<GameManager>().EarnScore(5);
+
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.transform == player)
+        if (other.gameObject.layer == 9)
         {
             IsPlayerInRange = false;
-        }
-    }
-    void Update()
-    {
-        if (IsPlayerInRange == true)
-        {
-            GameObject.Find("GameManager").GetComponent<GameManager>().EarnScore(100);
         }
     }
 }
