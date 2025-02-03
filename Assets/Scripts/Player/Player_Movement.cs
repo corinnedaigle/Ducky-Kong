@@ -83,7 +83,6 @@ public class Player_Movement : MonoBehaviour
         canClimb = false;
         hasWeapon = false;
         isClimbing = false;
-
         Vector2 size = collider.bounds.size;
 
 
@@ -268,7 +267,6 @@ public class Player_Movement : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
         p_animator.SetBool("nowDead", true);
         StartCoroutine(RespawnAfterDeath());
-
     }
 
 
@@ -294,7 +292,11 @@ public class Player_Movement : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         transform.position = respawnPosition;
+
+        p_animator.Rebind();
+        p_animator.Update(0);
         p_animator.SetBool("nowDead", false);
+        p_animator.Play("Idle");
 
         Debug.Log("Player Respawned.");
     }
