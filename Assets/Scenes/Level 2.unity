@@ -146,10 +146,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toothpaste (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6651064909722919155, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4754872
@@ -447,7 +443,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 14.187307, y: 8.143185}
+  m_Offset: {x: 14.187307, y: 8.308171}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -458,7 +454,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.9765625, y: 0.53540707}
+  m_Size: {x: 2.9765625, y: 0.2054348}
   m_EdgeRadius: 0
 --- !u!61 &199463319
 BoxCollider2D:
@@ -492,7 +488,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.6652322, y: 6.951251}
+  m_Offset: {x: 2.6652322, y: 7.022657}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -503,7 +499,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.023654, y: 0.40940237}
+  m_Size: {x: 8.023654, y: 0.26659107}
   m_EdgeRadius: 0
 --- !u!61 &199463320
 BoxCollider2D:
@@ -537,7 +533,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 16.187077, y: 6.682231}
+  m_Offset: {x: 16.187077, y: 6.78471}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -548,7 +544,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.9796143, y: 0.46310663}
+  m_Size: {x: 4.9796143, y: 0.2581482}
   m_EdgeRadius: 0
 --- !u!61 &199463321
 BoxCollider2D:
@@ -582,7 +578,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.694938, y: 6.1365843}
+  m_Offset: {x: 11.694938, y: 6.3027287}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -593,7 +589,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9614315, y: 0.5283184}
+  m_Size: {x: 1.9614315, y: 0.19602966}
   m_EdgeRadius: 0
 --- !u!61 &199463322
 BoxCollider2D:
@@ -627,7 +623,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.620294, y: 5.678467}
+  m_Offset: {x: 7.620294, y: 5.813459}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -638,7 +634,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9314909, y: 0.47892618}
+  m_Size: {x: 1.9314909, y: 0.20894146}
   m_EdgeRadius: 0
 --- !u!61 &199463323
 BoxCollider2D:
@@ -672,7 +668,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.1955495, y: 4.715575}
+  m_Offset: {x: 2.1955495, y: 4.8117237}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -683,7 +679,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.9396143, y: 0.4204564}
+  m_Size: {x: 6.9396143, y: 0.22815895}
   m_EdgeRadius: 0
 --- !u!61 &199463324
 BoxCollider2D:
@@ -717,7 +713,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.145679, y: 3.1857338}
+  m_Offset: {x: 3.145679, y: 3.2925658}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -728,7 +724,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.017749, y: 0.44715}
+  m_Size: {x: 9.017749, y: 0.23348618}
   m_EdgeRadius: 0
 --- !u!61 &199463325
 BoxCollider2D:
@@ -762,7 +758,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.677736, y: 3.6710465}
+  m_Offset: {x: 11.677736, y: 3.7645028}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -773,7 +769,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0046425, y: 0.4832673}
+  m_Size: {x: 2.0046425, y: 0.29635477}
   m_EdgeRadius: 0
 --- !u!61 &199463326
 BoxCollider2D:
@@ -807,7 +803,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 13.675626, y: 3.4536033}
+  m_Offset: {x: 13.675626, y: 3.5470595}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -818,7 +814,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0377789, y: 0.41102123}
+  m_Size: {x: 2.0377789, y: 0.22410893}
   m_EdgeRadius: 0
 --- !u!61 &199463327
 BoxCollider2D:
@@ -1092,7 +1088,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 9.662113, y: 3.9311042}
+  m_Offset: {x: 9.662113, y: 4.0349445}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1103,7 +1099,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0448036, y: 0.4719112}
+  m_Size: {x: 2.0448036, y: 0.26423073}
   m_EdgeRadius: 0
 --- !u!61 &199463334
 BoxCollider2D:
@@ -1137,7 +1133,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 9.688503, y: 5.9495945}
+  m_Offset: {x: 9.688503, y: 6.063819}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1148,7 +1144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9738464, y: 0.42990065}
+  m_Size: {x: 1.9738464, y: 0.20145226}
   m_EdgeRadius: 0
 --- !u!61 &199463335
 BoxCollider2D:
@@ -1182,7 +1178,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.17487, y: 8.401672}
+  m_Offset: {x: 11.17487, y: 8.529771}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1193,7 +1189,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.999977, y: 0.5159464}
+  m_Size: {x: 2.999977, y: 0.25974846}
   m_EdgeRadius: 0
 --- !u!1001 &341134811
 PrefabInstance:
@@ -1263,10 +1259,6 @@ PrefabInstance:
     - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_Name
       value: Toothpaste (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6651064909722919155, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1730,11 +1722,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.14
+      value: -7.74
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.56
+      value: -4.72
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1862,10 +1854,6 @@ PrefabInstance:
     - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_Name
       value: Toothpaste (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6651064909722919155, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2981,10 +2969,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toothpaste (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6651064909722919155, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5074196
@@ -3197,10 +3181,6 @@ PrefabInstance:
     - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_Name
       value: Toothpaste (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2317056547356907291, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6651064909722919155, guid: c8e2907e40289cb439dad5badc07c157, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3897,7 +3877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXSource: {fileID: 402512282}
-  jumping: {fileID: 8300000, guid: 4d733baf68d8a404589a9b0c9295d3f7, type: 3}
+  jumping: {fileID: 8300000, guid: c2085e4f310b3b04e964525a0bf33148, type: 3}
   death: {fileID: 8300000, guid: c0155a2debb054a43bbc8bc760cbcb5f, type: 3}
 --- !u!4 &2023356507
 Transform:
@@ -7056,17 +7036,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1863796492791353590, guid: ba858936c822fe8438eb01044666e8e1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7237661293595774680, guid: ba858936c822fe8438eb01044666e8e1, type: 3}
       propertyPath: m_Name
       value: CanvasForHeartsPoints
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040541748012858721, guid: ba858936c822fe8438eb01044666e8e1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 118.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
