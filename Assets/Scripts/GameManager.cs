@@ -35,16 +35,19 @@ public class GameManager : MonoBehaviour
 
     private int randomEnemy;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        
         StartCoroutine(waitSpawner());
         score = 0;
         lives = 3;
         scoreText.text = "Score: " + score;
         isPlayerAlive = true;
         stop = false;
+        score = PlayerPrefs.GetInt("SavedScore", 0); // Load saved score
+        scoreText.text = "Score: " + score;
+
     }
 
     // Update is called once per frame
@@ -70,8 +73,12 @@ public class GameManager : MonoBehaviour
     public void EarnScore(int HowMuchItEarn)
     {
         score += HowMuchItEarn;
+        PlayerPrefs.SetInt("SavedScore", score); // Save the score
+        PlayerPrefs.Save(); // Make sure it persists
         scoreText.text = "Score: " + score;
     }
+
+
     // Updates lives
     public void LoseLife(int HowMuchItLose)
     {
@@ -126,7 +133,8 @@ public class GameManager : MonoBehaviour
         isPlayerAlive = false;
         stop = true;
         scoreText.gameObject.SetActive(false);
-       
+        PlayerPrefs.SetInt("SavedScore", 0);
+        PlayerPrefs.Save();
 
         // I added this so it sends you to the game over screen instead 
         SceneManager.LoadScene("Game Over");
