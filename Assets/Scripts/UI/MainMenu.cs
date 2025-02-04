@@ -6,7 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Send player to Level 1
+    void Start()
+    {
+        Time.timeScale = 1f;
+        //score = PlayerPrefs.GetInt("SavedScore", 0); // Load saved score
+        ResetGameData(); // Reset score and lives when opening the main menu
+
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Level 1");
@@ -22,10 +29,20 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene("Main Menu");
-    }
+
+
+        // Load Main Menu
+        public void LoadMainMenu()
+        {
+            ResetGameData(); // Reset everything when returning to the main menu
+            SceneManager.LoadScene("Main Menu");
+        }
+
+        // Reset game data (score and lives)
+        private void ResetGameData()
+        {
+            PlayerPrefs.SetInt("SavedScore", 0);
+            PlayerPrefs.Save();
+        }
 
 }
