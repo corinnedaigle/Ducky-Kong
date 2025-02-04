@@ -226,6 +226,15 @@ public class Player_Movement : MonoBehaviour
             Fall();
         }
 
+        if (hasWeapon)
+        {
+            audioManager.PlaySFX(audioManager.attackbgm);
+        }
+        else
+        {
+            audioManager.PlaySFX(audioManager.bgm);
+        }
+
         // Apply the final calculated velocity
         rb.velocity = direction;
 
