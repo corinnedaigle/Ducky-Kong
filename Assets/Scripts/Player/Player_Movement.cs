@@ -4,11 +4,14 @@ using System.Collections;
 public class Player_Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
+
     private new Collider2D collider;  //this is giving a warning idk why 
     private Collider2D[] results;
     private Vector3 respawnPosition;
     private Vector2 direction;
+    private Vector3 weaponSpawnPosition;
     private BoxCollider2D boxCollider;
+    public GameObject weapon;
 
 
     [Header("Player Settings")]
@@ -29,8 +32,10 @@ public class Player_Movement : MonoBehaviour
     private bool isJumping;
     private bool isAttacking;
     private bool isMoving;
+    private bool takenWeapon;
 
     public GameManager gameManager;
+    private Vector3 weaponSpawn;
 
     // Animator code 
     private Animator p_animator;
@@ -42,12 +47,14 @@ public class Player_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         results = new Collider2D[6];
+        takenWeapon = false;
+
         respawnPosition = transform.position; // Store the initial position
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
+        weaponSpawn = weapon.transform.position;
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
         // animator
         p_animator = GetComponent<Animator>();
     }
@@ -106,6 +113,7 @@ public class Player_Movement : MonoBehaviour
             }
             if (hit.CompareTag("Weapon"))
             {
+                takenWeapon = true;
                 hasWeapon = true;
                 StartCoroutine(AttackTime());
                 Destroy(hit.gameObject);
@@ -115,7 +123,7 @@ public class Player_Movement : MonoBehaviour
                 if (!isAttacking) // Player loses life if not attacking
                 {
                     Destroy(hit.gameObject);
-                    LoseLife();
+                    ResultOfLosingLife();
                 }
             }
         }
@@ -123,6 +131,8 @@ public class Player_Movement : MonoBehaviour
 
     private void PlayerMovement()
     {
+  
+
         // Jumping
         if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
         {
@@ -235,7 +245,12 @@ public class Player_Movement : MonoBehaviour
 
     private IEnumerator AttackTime()
     {
+        // Need to add the Attk mode music 
+
+
         isAttacking = true;
+        // play attk animation 
+        p_animator.SetBool("Attk", true);
         float timer = 0f;
 
         while (timer < attackDuration)
@@ -244,7 +259,9 @@ public class Player_Movement : MonoBehaviour
             foreach (Collider2D hit in attackHits)
             {
                 Debug.Log("Attacked: " + hit.name);
-                GameObject.Find("GameManager").GetComponent<GameManager>().EarnScore(5);
+                gameManager.EarnScore(5);
+                audioManager.PlaySFX(audioManager.getCoin);
+
                 Destroy(hit.gameObject);
             }
 
@@ -254,27 +271,30 @@ public class Player_Movement : MonoBehaviour
 
         hasWeapon = false;
         isAttacking = false;
+        p_animator.SetBool("Attk", false);
         Debug.Log("Attack duration ended.");
     }
 
 
 
-    private void LoseLife()
+    private void ResultOfLosingLife()
     {
-        //transform.position = new Vector3(-7, -4, 0);
         Debug.Log("OH NO");
         audioManager.PlaySFX(audioManager.death);
-        GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife(1);
+        gameManager.LoseLife(1);
         p_animator.SetBool("nowDead", true);
+        p_animator.updateMode = AnimatorUpdateMode.UnscaledTime; // Ensure animation runs while "paused"
+        Time.timeScale = 0; // Pause everything except the animation
         StartCoroutine(RespawnAfterDeath());
     }
+
 
 
 
     private void Fall()
     {
         Debug.Log("Player fell off the screen. Respawning...");
-        LoseLife();
+        ResultOfLosingLife();
 
         if (gameManager.isPlayerAlive)
         {
@@ -290,14 +310,23 @@ public class Player_Movement : MonoBehaviour
 
     private IEnumerator RespawnAfterDeath()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSecondsRealtime(1.5f); // Use unscaled wait time
+
         transform.position = respawnPosition;
 
         p_animator.Rebind();
         p_animator.Update(0);
         p_animator.SetBool("nowDead", false);
-        p_animator.Play("Idle");
+        p_animator.updateMode = AnimatorUpdateMode.Normal; // Restore normal animation behavior
+        if (takenWeapon)
+            Instantiate(weapon, weaponSpawn, Quaternion.identity);
 
-        Debug.Log("Player Respawned.");
+
+
+        Time.timeScale = 1; // Resume game logic
+
+        Debug.Log(takenWeapon);
     }
+
+
 }

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private int score;
     private int lives;
 
+
     public GameObject[] enemies;
 
     public Vector3 spawnValues;
@@ -31,18 +32,22 @@ public class GameManager : MonoBehaviour
     public int startWait;
     public bool stop;
 
+
     private int randomEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         StartCoroutine(waitSpawner());
         score = 0;
         lives = 3;
         scoreText.text = "Score: " + score;
         isPlayerAlive = true;
         stop = false;
+        score = PlayerPrefs.GetInt("SavedScore", 0); // Load saved score
+        scoreText.text = "Score: " + score;
+
     }
 
     // Update is called once per frame
@@ -68,8 +73,11 @@ public class GameManager : MonoBehaviour
     public void EarnScore(int HowMuchItEarn)
     {
         score += HowMuchItEarn;
+        PlayerPrefs.SetInt("SavedScore", score); // Save the score
+        PlayerPrefs.Save(); // Make sure it persists
         scoreText.text = "Score: " + score;
     }
+
     // Updates lives
     public void LoseLife(int HowMuchItLose)
     {
@@ -79,8 +87,8 @@ public class GameManager : MonoBehaviour
         {
             // each one of this distroy a heart icon from the player UI 
             case 2:
-                    Destroy(live1);
-                    break;
+                Destroy(live1);
+                break;
             case 1: 
                 Destroy(live2);
                 break;
@@ -91,7 +99,25 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
-   // Your previous code in case i brake something by accident
+
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            // Clear existing enemies
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(enemy);
+            }
+
+
+            // Restart enemy spawning if the player is still alive
+            if (lives > 0)
+            {
+                StopCoroutine(waitSpawner()); // Stop the old coroutine
+                StartCoroutine(waitSpawner()); // Start it again
+            }
+        }
+
+        // Your previous code in case i brake something by accident
 
         /*livesText.text = "Lives: " + lives;
         if (lives <= 0)
@@ -106,11 +132,12 @@ public class GameManager : MonoBehaviour
         isPlayerAlive = false;
         stop = true;
         scoreText.gameObject.SetActive(false);
-       
+
+        PlayerPrefs.SetInt("SavedScore", 0);
+        PlayerPrefs.Save();
 
         // I added this so it sends you to the game over screen instead 
         SceneManager.LoadScene("Game Over");
-
     }
 
 }
