@@ -258,9 +258,9 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.18, y: 0.69}
+  m_Offset: {x: 0.010689498, y: -0.0035632865}
+  m_Size: {x: 0.9020711, y: 0.6187385}
   m_Direction: 1
