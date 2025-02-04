@@ -11,7 +11,7 @@ public class Soap : MonoBehaviour
         Destroy(gameObject, 4f);
     }
 
-/*    private void OnTriggerEnter2D(Collider2D whatIHit)
+    private void OnTriggerEnter2D(Collider2D whatIHit)
     {
         if (whatIHit.tag == "Player")
         {
@@ -19,5 +19,5 @@ public class Soap : MonoBehaviour
             whatIHit.GetComponent<Player_Box>().LoseLife();
             Destroy(this.gameObject);
         }
-    }*/
+    }
 }
