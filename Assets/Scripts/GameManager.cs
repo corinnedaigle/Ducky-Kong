@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private int score;
     private int lives;
 
+
     public GameObject[] enemies;
 
     public Vector3 spawnValues;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public float spawnLeastWait;
     public int startWait;
     public bool stop;
+
 
     private int randomEnemy;
 
@@ -79,8 +81,8 @@ public class GameManager : MonoBehaviour
         {
             // each one of this distroy a heart icon from the player UI 
             case 2:
-                    Destroy(live1);
-                    break;
+                Destroy(live1);
+                break;
             case 1: 
                 Destroy(live2);
                 break;
@@ -91,7 +93,23 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
-   // Your previous code in case i brake something by accident
+
+        // Clear existing enemies
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+
+
+        // Restart enemy spawning if the player is still alive
+        if (lives > 0)
+        {
+            StopCoroutine(waitSpawner()); // Stop the old coroutine
+            StartCoroutine(waitSpawner()); // Start it again
+        }
+
+
+        // Your previous code in case i brake something by accident
 
         /*livesText.text = "Lives: " + lives;
         if (lives <= 0)

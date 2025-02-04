@@ -643,6 +643,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4672763570052971764, guid: 969826ff675fcbf4abdcaa0ef8e7da90, type: 3}
   m_PrefabInstance: {fileID: 315737523}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &163561826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5601718634493117353, guid: 133c00bd804a244489536a59e40a0aae, type: 3}
+  m_PrefabInstance: {fileID: 8996792883664244752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &295818320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9083421122237585319, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
@@ -1986,6 +1991,7 @@ MonoBehaviour:
   SFXSource: {fileID: 923668997}
   jumping: {fileID: 8300000, guid: 4d733baf68d8a404589a9b0c9295d3f7, type: 3}
   death: {fileID: 8300000, guid: c0155a2debb054a43bbc8bc760cbcb5f, type: 3}
+  getCoin: {fileID: 8300000, guid: a4b4ff9775471d94fb7c3e4420ee41d3, type: 3}
 --- !u!4 &946760536
 Transform:
   m_ObjectHideFlags: 0
@@ -7073,6 +7079,10 @@ PrefabInstance:
       propertyPath: jumpStrength
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3593271173815688339, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 163561826}
     - target: {fileID: 3940652809180191660, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7083,11 +7093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.37
+      value: -7.54
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.31
+      value: -4.63
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7799,7 +7809,6 @@ SceneRoots:
   - {fileID: 131774541}
   - {fileID: 1130234015}
   - {fileID: 616660370}
-  - {fileID: 946760536}
   - {fileID: 4088847355504955998}
   - {fileID: 5228249648215916106}
   - {fileID: 5416127338313388718}
@@ -7812,3 +7821,4 @@ SceneRoots:
   - {fileID: 3922108442049621886}
   - {fileID: 2191876984892594634}
   - {fileID: 1184496787}
+  - {fileID: 946760536}

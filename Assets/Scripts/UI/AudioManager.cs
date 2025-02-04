@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip jumping;
     public AudioClip death;
+    public AudioClip getCoin;
 
     private void Start()
     {
