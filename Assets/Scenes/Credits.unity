@@ -796,15 +796,15 @@ MonoBehaviour:
 
     Megan Nowik'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3fabf1d3732b73442b358f0fc4664602, type: 2}
+  m_sharedMaterial: {fileID: -4796194898741617560, guid: 3fabf1d3732b73442b358f0fc4664602, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292055541
+  m_fontColor: {r: 0.9607844, g: 0.5686275, b: 0.82745105, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -910,7 +910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -64.9, y: -78.4}
+  m_AnchoredPosition: {x: -65.3, y: -78.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1326108078
@@ -937,15 +937,15 @@ MonoBehaviour:
 
     Corinne Daigle'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3fabf1d3732b73442b358f0fc4664602, type: 2}
+  m_sharedMaterial: {fileID: -4796194898741617560, guid: 3fabf1d3732b73442b358f0fc4664602, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292055541
+  m_fontColor: {r: 0.9607843, g: 0.5686275, b: 0.827451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 129.9695, y: 0, z: 0, w: 23.921621}
+  m_margin: {x: 127.655594, y: 0, z: 0, w: 23.921621}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1189,7 +1189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.3, y: -36.5}
+  m_AnchoredPosition: {x: 37.899994, y: -36.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1978262416
@@ -1216,15 +1216,15 @@ MonoBehaviour:
 
     Andres Benavente'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3fabf1d3732b73442b358f0fc4664602, type: 2}
+  m_sharedMaterial: {fileID: -4796194898741617560, guid: 3fabf1d3732b73442b358f0fc4664602, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292055541
+  m_fontColor: {r: 0.9607843, g: 0.5686275, b: 0.827451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 25.79161, y: 0, z: 91.029205, w: 23.26303}
+  m_margin: {x: 14.222176, y: 0, z: 91.029205, w: 23.26303}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1521,9 +1521,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 90.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7593505396247919818, guid: 20ba0024059833c40be67971a00d35fc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9012009469327931979, guid: 20ba0024059833c40be67971a00d35fc, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -94.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012009469327931979, guid: 20ba0024059833c40be67971a00d35fc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
