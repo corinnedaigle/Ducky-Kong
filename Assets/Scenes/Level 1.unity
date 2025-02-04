@@ -7085,7 +7085,7 @@ PrefabInstance:
       objectReference: {fileID: 163561826}
     - target: {fileID: 3593271173815688339, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: attackDuration
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3940652809180191660, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_Enabled
@@ -7097,11 +7097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07
+      value: -7.34
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: -4.78
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.z

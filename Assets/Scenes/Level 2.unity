@@ -1551,7 +1551,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5963148318171055911, guid: 0142359003ad1c94cbdac75be8b3edd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.53
+      value: -4.19
       objectReference: {fileID: 0}
     - target: {fileID: 5963148318171055911, guid: 0142359003ad1c94cbdac75be8b3edd1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4196,6 +4196,7 @@ MonoBehaviour:
   SFXSource: {fileID: 402512282}
   jumping: {fileID: 8300000, guid: c2085e4f310b3b04e964525a0bf33148, type: 3}
   death: {fileID: 8300000, guid: c0155a2debb054a43bbc8bc760cbcb5f, type: 3}
+  getCoin: {fileID: 0}
 --- !u!4 &2023356507
 Transform:
   m_ObjectHideFlags: 0

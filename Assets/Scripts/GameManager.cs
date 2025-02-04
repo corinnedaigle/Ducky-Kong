@@ -94,20 +94,22 @@ public class GameManager : MonoBehaviour
 
         }
 
-        // Clear existing enemies
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        if (SceneManager.GetActiveScene().name == "Level 1")
         {
-            Destroy(enemy);
+            // Clear existing enemies
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(enemy);
+            }
+
+
+            // Restart enemy spawning if the player is still alive
+            if (lives > 0)
+            {
+                StopCoroutine(waitSpawner()); // Stop the old coroutine
+                StartCoroutine(waitSpawner()); // Start it again
+            }
         }
-
-
-        // Restart enemy spawning if the player is still alive
-        if (lives > 0)
-        {
-            StopCoroutine(waitSpawner()); // Stop the old coroutine
-            StartCoroutine(waitSpawner()); // Start it again
-        }
-
 
         // Your previous code in case i brake something by accident
 
