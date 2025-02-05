@@ -8,7 +8,7 @@ public class Bubbles2 : MonoBehaviour
     void Start()
     {
         // timer to distroy bubbles after a set amount of time
-        Destroy(gameObject, 8f);
+        Destroy(gameObject, 7.5f);
     }
 
 }
