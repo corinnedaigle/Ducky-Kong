@@ -1943,7 +1943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.31
       objectReference: {fileID: 0}
     - target: {fileID: 6230948207405097230, guid: dc8250e830a19074188597b0c08e93b5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7362,6 +7362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Transition
       objectReference: {fileID: 0}
+    - target: {fileID: 1878561686919448142, guid: 8c8481dc06d547142bf1752ab52f4816, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.0999756
+      objectReference: {fileID: 0}
     - target: {fileID: 2275553768112588906, guid: 8c8481dc06d547142bf1752ab52f4816, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.023259774
@@ -7402,7 +7406,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4579305754792497419, guid: 8c8481dc06d547142bf1752ab52f4816, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
