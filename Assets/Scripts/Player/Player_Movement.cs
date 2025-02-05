@@ -131,7 +131,7 @@ public class Player_Movement : MonoBehaviour
 
     private void PlayerMovement()
     {
-
+  
 
         // Jumping
         if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
@@ -233,6 +233,8 @@ public class Player_Movement : MonoBehaviour
     }
 
 
+    
+
     private void Attack()
     {
         if (hasWeapon && !isAttacking)
@@ -243,13 +245,12 @@ public class Player_Movement : MonoBehaviour
 
     private IEnumerator AttackTime()
     {
+        // Need to add the Attk mode music 
+
+
         isAttacking = true;
+        // play attk animation 
         p_animator.SetBool("Attk", true);
-
-        // Pause normal BGM and switch to attack BGM
-        audioManager.PauseBGM();
-        audioManager.PlayBGM(audioManager.attackbgm);
-
         float timer = 0f;
 
         while (timer < attackDuration)
@@ -260,6 +261,7 @@ public class Player_Movement : MonoBehaviour
                 Debug.Log("Attacked: " + hit.name);
                 gameManager.EarnScore(5);
                 audioManager.PlaySFX(audioManager.getCoin);
+
                 Destroy(hit.gameObject);
             }
 
@@ -267,12 +269,9 @@ public class Player_Movement : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.5f);
         }
 
+        hasWeapon = false;
         isAttacking = false;
         p_animator.SetBool("Attk", false);
-
-        audioManager.PlayBGM(audioManager.bgm);
-        audioManager.ResumeBGM();
-
         Debug.Log("Attack duration ended.");
     }
 

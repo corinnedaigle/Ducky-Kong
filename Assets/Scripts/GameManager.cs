@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour
 
     public bool isPlayerAlive;
 
-    [SerializeField] private int score;
-    public int Score => score;
+    private int score;
     private int lives;
 
 

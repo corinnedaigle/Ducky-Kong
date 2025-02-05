@@ -10,9 +10,7 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         //score = PlayerPrefs.GetInt("SavedScore", 0); // Load saved score
-if (SceneManager.GetActiveScene().name == "Main Menu"){
         ResetGameData(); // Reset score and lives when opening the main menu
-}
 
     }
 
