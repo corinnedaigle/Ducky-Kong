@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-
     [Header("Audio Sources")]
     public AudioSource bgmSource;
     public AudioSource sfxSource;
@@ -16,19 +14,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip death;
 
     private float bgmResumeTime = 0f;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
