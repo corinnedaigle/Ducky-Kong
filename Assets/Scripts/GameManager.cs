@@ -42,11 +42,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(waitSpawner());
         score = 0;
         lives = 3;
-        scoreText.text = "" + score;
+        
         isPlayerAlive = true;
         stop = false;
         score = PlayerPrefs.GetInt("SavedScore", 0); // Load saved score
-        
+        scoreText.text = "" + score;
 
     }
 
