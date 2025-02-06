@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         score += HowMuchItEarn;
         PlayerPrefs.SetInt("SavedScore", score); // Save the score
         PlayerPrefs.Save(); // Make sure it persists
-        scoreText.text = "Score: " + score;
+        scoreText.text = "" + score;
     }
 
     // Updates lives
