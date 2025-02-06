@@ -9,6 +9,7 @@ public class Player_Movement : MonoBehaviour
     private Collider2D[] results;
     private Vector3 respawnPosition;
     private Vector2 direction;
+    private Vector3 weaponSpawnPosition;
     private BoxCollider2D boxCollider;
     public GameObject weapon;
 
@@ -34,6 +35,7 @@ public class Player_Movement : MonoBehaviour
     private bool takenWeapon;
 
     public GameManager gameManager;
+    private Vector3 weaponSpawn;
 
     // Animator code 
     private Animator p_animator;
@@ -50,6 +52,8 @@ public class Player_Movement : MonoBehaviour
         respawnPosition = transform.position; // Store the initial position
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         boxCollider = GetComponent<BoxCollider2D>(); // Explicitly use BoxCollider2D
+        weaponSpawn = weapon.transform.position;
+
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         // animator
         p_animator = GetComponent<Animator>();
@@ -316,7 +320,14 @@ public class Player_Movement : MonoBehaviour
         p_animator.SetBool("nowDead", false);
         p_animator.updateMode = AnimatorUpdateMode.Normal; // Restore normal animation behavior
         if (takenWeapon)
-            Instantiate(weapon, new Vector3(0.89f,-0.62f,-0.5f), Quaternion.identity);
+            Instantiate(weapon, weaponSpawn, Quaternion.identity);
+
+
+
         Time.timeScale = 1; // Resume game logic
+
+        Debug.Log(takenWeapon);
     }
+
+
 }
