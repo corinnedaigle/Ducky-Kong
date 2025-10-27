@@ -8,6 +8,7 @@ A kid (kids = always using their imagination) playing with their toys in the bat
 Video Game:  Ducky Kong
 
 I. Genre Definitions & Conventions
+
 Genre or Genres
 Platformer and Casual Game
 Casual Game
